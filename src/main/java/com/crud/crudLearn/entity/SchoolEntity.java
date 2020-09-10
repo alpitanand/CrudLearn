@@ -19,5 +19,5 @@ public class SchoolEntity {
 
     @Column
     @OneToMany(mappedBy = "schoolEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<UserEntity> userList;
+    private Set<StudentEntity> userList;
 }

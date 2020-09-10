@@ -1,7 +1,7 @@
 package com.crud.crudLearn.service;
 
 import com.crud.crudLearn.dao.UserDAO;
-import com.crud.crudLearn.entity.UserEntity;
+import com.crud.crudLearn.entity.StudentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ public class UserService {
     @Autowired
     UserDAO userDAO;
 
-    public void insertUser(UserEntity userEntity){
-        if(userEntity==null){
+    public void insertUser(StudentEntity studentEntity){
+        if(studentEntity ==null){
             return;
         }
-        userDAO.save(userEntity);
+        userDAO.save(studentEntity);
     }
 }
