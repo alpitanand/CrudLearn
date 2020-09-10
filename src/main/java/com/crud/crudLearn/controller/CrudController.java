@@ -1,9 +1,9 @@
 package com.crud.crudLearn.controller;
 
 import com.crud.crudLearn.entity.SchoolEntity;
-import com.crud.crudLearn.entity.UserEntity;
+import com.crud.crudLearn.entity.StudentEntity;
 import com.crud.crudLearn.model.RemoveSchoolPayload;
-import com.crud.crudLearn.model.RemoveUserFromSchool;
+import com.crud.crudLearn.model.RemoveStudentFromSchool;
 import com.crud.crudLearn.service.SchoolService;
 import com.crud.crudLearn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +31,13 @@ public class CrudController {
        return schoolService.insertInSchool(schoolEntity);
     }
 
-    @PostMapping("/removeUser")
-    public void removeUserFromSchool(@RequestBody RemoveUserFromSchool removeUserFromSchool){
-        if(removeUserFromSchool==null){
+    @PostMapping("/removeStudent")
+    public void removeStudentFromSchool(@RequestBody RemoveStudentFromSchool removeStudentFromSchool){
+        if(removeStudentFromSchool ==null){
             throw new IllegalArgumentException("Params not provided");
         }
 
-        schoolService.removeUserFromSchool(removeUserFromSchool);
+        schoolService.removeUserFromSchool(removeStudentFromSchool);
 
     }
 
@@ -49,11 +49,11 @@ public class CrudController {
     schoolService.removeSchool(removeSchoolPayload);
     }
 
-    @PostMapping("/addUser")
-    public void addUser(@RequestBody UserEntity userEntity){
-        if(userEntity == null){
+    @PostMapping("/addStudent")
+    public void addStudent(@RequestBody StudentEntity studentEntity){
+        if(studentEntity == null){
             throw new IllegalArgumentException("Params not provided");
         }
-        userService.insertUser(userEntity);
+        userService.insertUser(studentEntity);
     }
 }

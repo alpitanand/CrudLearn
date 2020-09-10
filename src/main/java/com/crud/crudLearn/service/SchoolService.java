@@ -2,9 +2,9 @@ package com.crud.crudLearn.service;
 
 import com.crud.crudLearn.dao.SchoolDAO;
 import com.crud.crudLearn.entity.SchoolEntity;
-import com.crud.crudLearn.entity.UserEntity;
+import com.crud.crudLearn.entity.StudentEntity;
 import com.crud.crudLearn.model.RemoveSchoolPayload;
-import com.crud.crudLearn.model.RemoveUserFromSchool;
+import com.crud.crudLearn.model.RemoveStudentFromSchool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,17 +27,17 @@ public class SchoolService {
     }
 
     @Transactional
-    public void removeUserFromSchool(RemoveUserFromSchool removeUserFromSchool) {
-        SchoolEntity schoolEntity = schoolDAO.findById(removeUserFromSchool.getSchoolID()).orElse(null);
+    public void removeUserFromSchool(RemoveStudentFromSchool removeStudentFromSchool) {
+        SchoolEntity schoolEntity = schoolDAO.findById(removeStudentFromSchool.getSchoolID()).orElse(null);
         if (schoolEntity == null) {
             throw new RuntimeException("School not found");
         }
 
-        Set<UserEntity> userEntities = schoolEntity.getUserList();
+        Set<StudentEntity> userEntities = schoolEntity.getUserList();
 
-        for (UserEntity userEntity : userEntities) {
-            if (userEntity.getUserId() == removeUserFromSchool.getUserID()) {
-                userEntities.remove(userEntity);
+        for (StudentEntity studentEntity : userEntities) {
+            if (studentEntity.getUserId() == removeStudentFromSchool.getUserID()) {
+                userEntities.remove(studentEntity);
                 break;
             }
         }
