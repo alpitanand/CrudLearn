@@ -11,18 +11,16 @@ import java.util.Set;
 @Entity
 @Data
 @Table
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentEntity {
+@Builder
+public class SubjectEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private int userId;
+    private int subjectId;
 
     @Column
-    private String userName;
+    private String subjectName;
 
-    @ManyToMany
-    private Set<SubjectEntity> schoolEntities;
 }

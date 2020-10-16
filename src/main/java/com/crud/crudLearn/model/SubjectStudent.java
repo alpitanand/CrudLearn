@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RemoveStudentFromSchool {
-    private int schoolID;
-    private int userID;
+public class SubjectStudent {
+    private int subjectID;
+    private int studentId;
 }

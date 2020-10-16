@@ -1,57 +1,59 @@
 package com.crud.crudLearn.service;
 
-import com.crud.crudLearn.dao.SchoolDAO;
-import com.crud.crudLearn.entity.SchoolEntity;
-import com.crud.crudLearn.entity.StudentEntity;
-import com.crud.crudLearn.model.RemoveSchoolPayload;
-import com.crud.crudLearn.model.RemoveStudentFromSchool;
+import com.crud.crudLearn.dao.SubjectDAO;
+import com.crud.crudLearn.entity.SubjectEntity;
+import com.crud.crudLearn.model.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Set;
+import java.util.Optional;
 
 @Service
 public class SchoolService {
 
     @Autowired
-    SchoolDAO schoolDAO;
+    SubjectDAO subjectDAO;
 
-
-    public SchoolEntity insertInSchool(SchoolEntity schoolEntity) {
-        if (schoolEntity == null) {
+    public SubjectEntity addSubject(SubjectEntity subjectEntity) {
+        if (subjectEntity == null) {
             return null;
         }
 
-        return schoolDAO.save(schoolEntity);
+        return subjectDAO.save(subjectEntity);
+    }
+
+//    @Transactional
+//    public void removeUserFromSchool(RemoveStudentFromSchool removeStudentFromSchool) {
+//        SchoolEntity schoolEntity = schoolDAO.findById(removeStudentFromSchool.getSchoolID()).orElse(null);
+//        if (schoolEntity == null) {
+//            throw new RuntimeException("School not found");
+//        }
+//
+//        List<StudentEntity> userEntities = schoolEntity.getStudentEntities();
+//
+//        for (StudentEntity studentEntity : userEntities) {
+//            if (studentEntity.getUserId() == removeStudentFromSchool.getUserID()) {
+//                userEntities.remove(studentEntity);
+//                break;
+//            }
+//        }
+//
+//        schoolEntity.setStudentEntities(userEntities);
+//        schoolDAO.save(schoolEntity);
+//
+//    }
+
+    public void removeSchool(Subject subject) {
+        SubjectEntity subjectEntity = subjectDAO.findById(subject.getSubjectId()).orElse(null);
+        if (subjectEntity == null) {
+            throw new RuntimeException("School not found");
+        }
+        subjectDAO.delete(subjectEntity);
     }
 
     @Transactional
-    public void removeUserFromSchool(RemoveStudentFromSchool removeStudentFromSchool) {
-        SchoolEntity schoolEntity = schoolDAO.findById(removeStudentFromSchool.getSchoolID()).orElse(null);
-        if (schoolEntity == null) {
-            throw new RuntimeException("School not found");
-        }
-
-        Set<StudentEntity> userEntities = schoolEntity.getUserList();
-
-        for (StudentEntity studentEntity : userEntities) {
-            if (studentEntity.getUserId() == removeStudentFromSchool.getUserID()) {
-                userEntities.remove(studentEntity);
-                break;
-            }
-        }
-
-        schoolEntity.setUserList(userEntities);
-        schoolDAO.save(schoolEntity);
-
-    }
-
-    public void removeSchool(RemoveSchoolPayload removeSchoolPayload) {
-        SchoolEntity schoolEntity = schoolDAO.findById(removeSchoolPayload.getSchoolID()).orElse(null);
-        if(schoolEntity==null){
-            throw new RuntimeException("School not found");
-        }
-        schoolDAO.delete(schoolEntity);
+    public Optional<SubjectEntity> getSchool(Subject subject) {
+        return subjectDAO.findById(subject.getSubjectId());
     }
 }

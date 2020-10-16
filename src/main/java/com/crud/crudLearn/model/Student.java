@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RemoveSchoolPayload {
-    private int schoolID;
+public class Student {
+    private String name;
 }
