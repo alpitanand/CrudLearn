@@ -1,14 +1,17 @@
 package com.crud.crudLearn.controller;
 
 import com.crud.crudLearn.entity.SubjectEntity;
-import com.crud.crudLearn.model.Subject;
 import com.crud.crudLearn.model.Student;
+import com.crud.crudLearn.model.Subject;
 import com.crud.crudLearn.model.SubjectStudent;
 import com.crud.crudLearn.service.SchoolService;
 import com.crud.crudLearn.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
@@ -34,15 +37,6 @@ public class CrudController {
        return schoolService.addSubject(subjectEntity);
     }
 
-//    @PostMapping("/removeStudent")
-//    public void removeStudentFromSchool(@RequestBody RemoveStudentFromSchool removeStudentFromSchool){
-//        if(removeStudentFromSchool ==null){
-//            throw new IllegalArgumentException("Params not provided");
-//        }
-//
-//        schoolService.removeUserFromSchool(removeStudentFromSchool);
-//
-//    }
 
     @PostMapping("/removeSchool")
     public void removeSchool(@RequestBody Subject subject){
@@ -61,16 +55,25 @@ public class CrudController {
     }
 
     @PostMapping("/registerStudent")
-    public void registerStudent(@RequestBody Student student){
-        if(StringUtils.isEmpty(student)){
+    public void registerStudent(@RequestBody Student student) {
+        if (StringUtils.isEmpty(student)) {
             throw new IllegalArgumentException("Params not provided");
         }
         studentService.registerStudent(student.getName());
     }
 
+    @PostMapping("/removeSubject")
+    public void removeSubject(@RequestBody Subject subject) {
+        if (subject == null || StringUtils.isEmpty(subject.getSubjectId())) {
+            throw new IllegalArgumentException("Params not provided");
+        }
+
+        schoolService.removeSubject(subject.getSubjectId());
+
+    }
 
     @GetMapping("/school")
-    public Optional<SubjectEntity> getSchool(@RequestBody Subject subject){
+    public Optional<SubjectEntity> getSchool(@RequestBody Subject subject) {
         Optional<SubjectEntity> schoolEntity = schoolService.getSchool(subject);
         return schoolEntity;
     }

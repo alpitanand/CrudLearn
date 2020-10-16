@@ -23,26 +23,6 @@ public class SchoolService {
         return subjectDAO.save(subjectEntity);
     }
 
-//    @Transactional
-//    public void removeUserFromSchool(RemoveStudentFromSchool removeStudentFromSchool) {
-//        SchoolEntity schoolEntity = schoolDAO.findById(removeStudentFromSchool.getSchoolID()).orElse(null);
-//        if (schoolEntity == null) {
-//            throw new RuntimeException("School not found");
-//        }
-//
-//        List<StudentEntity> userEntities = schoolEntity.getStudentEntities();
-//
-//        for (StudentEntity studentEntity : userEntities) {
-//            if (studentEntity.getUserId() == removeStudentFromSchool.getUserID()) {
-//                userEntities.remove(studentEntity);
-//                break;
-//            }
-//        }
-//
-//        schoolEntity.setStudentEntities(userEntities);
-//        schoolDAO.save(schoolEntity);
-//
-//    }
 
     public void removeSchool(Subject subject) {
         SubjectEntity subjectEntity = subjectDAO.findById(subject.getSubjectId()).orElse(null);
@@ -55,5 +35,9 @@ public class SchoolService {
     @Transactional
     public Optional<SubjectEntity> getSchool(Subject subject) {
         return subjectDAO.findById(subject.getSubjectId());
+    }
+
+    public void removeSubject(int subjectId) {
+
     }
 }

@@ -24,14 +24,14 @@ public class StudentService {
         if (subjectStudent == null) {
             return;
         }
+
+        StudentEntity studentEntity = studentDAO.findById(subjectStudent.getStudentId()).orElse(null);
+        if (studentEntity == null) return;
+
         SubjectEntity subjectEntity = subjectDAO.findById(subjectStudent.getSubjectID()).orElse(null);
         if (subjectEntity == null) {
             return;
         }
-
-        StudentEntity studentEntity = studentDAO.findById(subjectStudent.getStudentId()).orElse(null);
-
-        if (studentEntity == null) return;
 
         Set<SubjectEntity> schoolEntities = new HashSet<>();
 

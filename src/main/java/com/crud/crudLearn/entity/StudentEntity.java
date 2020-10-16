@@ -1,5 +1,9 @@
 package com.crud.crudLearn.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +27,10 @@ public class StudentEntity {
     @Column
     private String userName;
 
-    @ManyToMany
+    @ManyToMany(targetEntity = SubjectEntity.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "student_subject",
+            joinColumns = {@JoinColumn(name = "student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "subject_id")})
+    @JsonIgnore
     private Set<SubjectEntity> schoolEntities;
 }
