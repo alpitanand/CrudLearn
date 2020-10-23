@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
-public class SchoolService {
+public class SubjectService {
 
     @Autowired
     SubjectDAO subjectDAO;
