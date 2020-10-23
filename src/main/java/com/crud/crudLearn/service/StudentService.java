@@ -8,6 +8,7 @@ import com.crud.crudLearn.model.SubjectStudent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ public class StudentService {
     @Autowired
     SubjectDAO subjectDAO;
 
+    @Transactional
     public void registerToSubjects(SubjectStudent subjectStudent) {
         if (subjectStudent == null) {
             return;
@@ -33,10 +35,11 @@ public class StudentService {
             return;
         }
 
-        Set<SubjectEntity> schoolEntities = new HashSet<>();
+        Set<SubjectEntity> subjectEntities = new HashSet<>();
 
-        schoolEntities = studentEntity.getSchoolEntities();
-        schoolEntities.add(subjectEntity);
+        subjectEntities = studentEntity.getSubjectEntities();
+        subjectEntities.add(subjectEntity);
+        studentEntity.setSubjectEntities(subjectEntities);
 
         studentDAO.save(studentEntity);
     }
@@ -50,7 +53,7 @@ public class StudentService {
 
         StudentEntity studentEntity = StudentEntity.builder()
                 .userName(name)
-                .schoolEntities(schoolEntities)
+                .subjectEntities(schoolEntities)
                 .build();
 
         studentDAO.save(studentEntity);
