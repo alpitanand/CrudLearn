@@ -1,16 +1,14 @@
 package com.crud.crudLearn.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,8 +22,8 @@ public class SubjectEntity {
     @Column
     private String subjectName;
 
-    @ManyToMany(targetEntity = StudentEntity.class, mappedBy = "schoolEntities", fetch = FetchType.LAZY)
     @JsonIgnore
+    @ManyToMany(mappedBy = "subjectEntities")
     private Set<StudentEntity> studentEntities;
 
 
