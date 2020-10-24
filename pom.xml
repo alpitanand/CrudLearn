@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.crud</groupId>
-	<artifactId>crudLearn</artifactId>
+	<artifactId>coaching</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>crudLearn</name>
+	<name>coaching</name>
 	<description>Demo for crud</description>
 
 	<properties>
@@ -26,6 +26,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!--Kafka dependency-->
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+			<version>2.3.7.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -64,6 +71,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>docker-demo</finalName>
 	</build>
 
 </project>
