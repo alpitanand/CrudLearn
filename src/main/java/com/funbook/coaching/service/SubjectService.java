@@ -18,7 +18,7 @@ public class SubjectService {
     SubjectDAO subjectDAO;
 
     @Autowired
-    private KafkaTemplate<String, SubjectEntity> kafkaTemplate;
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     String studentTopic = CoachingConstants.STUDENT_TOPIC;
 
@@ -27,7 +27,7 @@ public class SubjectService {
             return null;
         }
         SubjectEntity savedSubjectEntity =  subjectDAO.save(subjectEntity);
-        kafkaTemplate.send(studentTopic, savedSubjectEntity);
+        kafkaTemplate.send(studentTopic, savedSubjectEntity.toString());
         return savedSubjectEntity;
     }
 
