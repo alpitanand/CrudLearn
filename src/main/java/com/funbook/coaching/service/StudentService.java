@@ -1,10 +1,10 @@
-package com.crud.crudLearn.service;
+package com.funbook.coaching.service;
 
-import com.crud.crudLearn.dao.StudentDAO;
-import com.crud.crudLearn.dao.SubjectDAO;
-import com.crud.crudLearn.entity.StudentEntity;
-import com.crud.crudLearn.entity.SubjectEntity;
-import com.crud.crudLearn.model.SubjectStudent;
+import com.funbook.coaching.dao.StudentDAO;
+import com.funbook.coaching.dao.SubjectDAO;
+import com.funbook.coaching.entity.StudentEntity;
+import com.funbook.coaching.entity.SubjectEntity;
+import com.funbook.coaching.model.SubjectStudent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

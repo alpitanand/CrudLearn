@@ -1,4 +1,4 @@
-package com.crud.crudLearn.model;
+package com.funbook.coaching.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,8 @@
-package com.crud.crudLearn.entity;
+package com.funbook.coaching.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,5 +28,13 @@ public class SubjectEntity {
     @ManyToMany(mappedBy = "subjectEntities")
     private Set<StudentEntity> studentEntities;
 
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
+    }
 
 }

@@ -1,9 +1,11 @@
-package com.crud.crudLearn.service;
+package com.funbook.coaching.service;
 
-import com.crud.crudLearn.dao.SubjectDAO;
-import com.crud.crudLearn.entity.SubjectEntity;
-import com.crud.crudLearn.model.Subject;
+import com.funbook.coaching.dao.SubjectDAO;
+import com.funbook.coaching.entity.SubjectEntity;
+import com.funbook.coaching.model.Subject;
+import com.funbook.coaching.util.CoachingConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,12 +17,18 @@ public class SubjectService {
     @Autowired
     SubjectDAO subjectDAO;
 
+    @Autowired
+    private KafkaTemplate<String, SubjectEntity> kafkaTemplate;
+
+    String studentTopic = CoachingConstants.STUDENT_TOPIC;
+
     public SubjectEntity addSubject(SubjectEntity subjectEntity) {
         if (subjectEntity == null) {
             return null;
         }
-
-        return subjectDAO.save(subjectEntity);
+        SubjectEntity savedSubjectEntity =  subjectDAO.save(subjectEntity);
+        kafkaTemplate.send(studentTopic, savedSubjectEntity);
+        return savedSubjectEntity;
     }
 
 

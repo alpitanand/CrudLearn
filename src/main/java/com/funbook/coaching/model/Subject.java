@@ -1,4 +1,4 @@
-package com.crud.crudLearn.model;
+package com.funbook.coaching.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
-    private String name;
+public class Subject {
+    private int subjectId;
 }

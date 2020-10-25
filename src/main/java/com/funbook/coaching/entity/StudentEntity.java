@@ -1,4 +1,4 @@
-package com.crud.crudLearn.entity;
+package com.funbook.coaching.entity;
 
 import lombok.*;
 

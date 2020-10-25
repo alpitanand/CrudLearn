@@ -1,11 +1,13 @@
-package com.crud.crudLearn.controller;
+package com.funbook.coaching.controller;
 
-import com.crud.crudLearn.entity.SubjectEntity;
-import com.crud.crudLearn.model.Student;
-import com.crud.crudLearn.model.Subject;
-import com.crud.crudLearn.model.SubjectStudent;
-import com.crud.crudLearn.service.SubjectService;
-import com.crud.crudLearn.service.StudentService;
+import com.funbook.coaching.entity.SubjectEntity;
+import com.funbook.coaching.model.Student;
+import com.funbook.coaching.model.Subject;
+import com.funbook.coaching.model.SubjectStudent;
+import com.funbook.coaching.service.SubjectService;
+import com.funbook.coaching.service.StudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +26,15 @@ public class CrudController {
     @Autowired
     StudentService studentService;
 
+    Logger logger = LoggerFactory.getLogger(CrudController.class);
+
     @GetMapping("/health")
     public String healthCheck(){
+        logger.info("I am getting logged");
         return "I am healthy";
     }
 
-    @PostMapping("/school")
+    @PostMapping("/addSubject")
     public SubjectEntity createSchool(@RequestBody SubjectEntity subjectEntity){
         if(subjectEntity.getSubjectName()==null){
             throw new IllegalArgumentException("School name not given");

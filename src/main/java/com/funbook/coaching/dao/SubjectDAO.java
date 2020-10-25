@@ -1,6 +1,6 @@
-package com.crud.crudLearn.dao;
+package com.funbook.coaching.dao;
 
-import com.crud.crudLearn.entity.SubjectEntity;
+import com.funbook.coaching.entity.SubjectEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
